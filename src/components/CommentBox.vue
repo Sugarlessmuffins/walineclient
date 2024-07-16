@@ -36,38 +36,6 @@
     </div>
 
     <div class="wl-panel">
-      <div
-        v-if="config.login !== 'force' && config.meta.length && !isLogin"
-        class="wl-header"
-        :class="`item${config.meta.length}`"
-      >
-        <div v-for="kind in config.meta" :key="kind" class="wl-header-item">
-          <label
-            :for="`wl-${kind}`"
-            v-text="
-              locale[kind] +
-              (config.requiredMeta.includes(kind) || !config.requiredMeta.length
-                ? ''
-                : `(${locale.optional})`)
-            "
-          />
-
-          <input
-            :id="`wl-${kind}`"
-            :ref="
-              (element) => {
-                if (element) inputRefs[kind] = element as HTMLInputElement;
-              }
-            "
-            v-model="userMeta[kind]"
-            class="wl-input"
-            :class="`wl-${kind}`"
-            :name="kind"
-            :type="kind === 'mail' ? 'email' : 'text'"
-          />
-        </div>
-      </div>
-
       <textarea
         id="wl-edit"
         ref="editorRef"
@@ -89,17 +57,6 @@
 
       <div class="wl-footer">
         <div class="wl-actions">
-          <a
-            href="https://shinigami.id"
-            title="Markdown Guide"
-            aria-label="Markdown is supported"
-            class="wl-action"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <MarkdownIcon />
-          </a>
-
           <button
             v-show="emoji.tabs.length"
             ref="emojiButtonRef"
